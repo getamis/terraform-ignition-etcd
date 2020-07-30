@@ -46,7 +46,6 @@ fi
 [[ ! -n "$HOST_IP" ]] && export HOST_IP=$(ip -o route get 8.8.8.8 | sed -e 's/^.* src \([^ ]*\) .*$/\1/')
 
 DOCKER="${DOCKER:-/usr/bin/docker}"
-ETCD_EXEC_ARGS=${ETCD_EXEC_ARGS:-etcd}
 set -x
 exec ${DOCKER} run \
   -v ${ETCD_DATA_DIR}:${ETCD_DATA_DIR}:rw \
@@ -54,16 +53,16 @@ exec ${DOCKER} run \
   -v ${ETCD_CERT_PATH}:${ETCD_CERT_PATH}:rw \
   -v /usr/share/ca-certificates:/usr/share/ca-certificates:ro \
   -v /etc/hosts:/etc/hosts:ro \
-  --env-file=/etc/etcd/etcd.env \
+  --env-file=/etc/etcd/config.env \
   --net=host \
   --pid=host \
   --user=${USER_ID} \
   --name=etcd \
   ${DOCKER_RUN_ARGS} \
   ${ETCD_IMAGE} \
-    ${ETCD_EXEC_ARGS} \
+    etcd \
       --name=${HOSTNAME} \
       --advertise-client-urls=${SCHEME}://${HOST_IP}:${CLIENT_PORT} \
       --initial-advertise-peer-urls=${SCHEME}://${HOST_IP}:${PEER_PORT} \
       --initial-cluster-state=${INITIAL_CLUSTER_STATE} \
-      "$@"
+      "${ETCD_EXTRA_FLAGS}"

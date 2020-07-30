@@ -1,5 +1,5 @@
 data "ignition_file" "etcd_ca" {
-  path       = "${local.certs_path}/ca.crt"
+  path       = "${var.pki_path}/ca.crt"
   mode       = 420
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -11,7 +11,7 @@ data "ignition_file" "etcd_ca" {
 }
 
 data "ignition_file" "etcd_client_cert" {
-  path       = "${local.certs_path}/client.crt"
+  path       = "${var.pki_path}/client.crt"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -23,7 +23,7 @@ data "ignition_file" "etcd_client_cert" {
 }
 
 data "ignition_file" "etcd_client_key" {
-  path       = "${local.certs_path}/client.key"
+  path       = "${var.pki_path}/client.key"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -35,7 +35,7 @@ data "ignition_file" "etcd_client_key" {
 }
 
 data "ignition_file" "etcd_server_cert" {
-  path       = "${local.certs_path}/server.crt"
+  path       = "${var.pki_path}/server.crt"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -47,7 +47,7 @@ data "ignition_file" "etcd_server_cert" {
 }
 
 data "ignition_file" "etcd_server_key" {
-  path       = "${local.certs_path}/server.key"
+  path       = "${var.pki_path}/server.key"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -59,7 +59,7 @@ data "ignition_file" "etcd_server_key" {
 }
 
 data "ignition_file" "etcd_peer_cert" {
-  path       = "${local.certs_path}/peer.crt"
+  path       = "${var.pki_path}/peer.crt"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
@@ -71,7 +71,7 @@ data "ignition_file" "etcd_peer_cert" {
 }
 
 data "ignition_file" "etcd_peer_key" {
-  path       = "${local.certs_path}/peer.key"
+  path       = "${var.pki_path}/peer.key"
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]

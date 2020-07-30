@@ -4,9 +4,9 @@ Requires=network-online.target
 
 [Service]
 Environment="PATH=/opt/bin:/opt/etcd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-EnvironmentFile=/etc/etcd/etcd.env
+EnvironmentFile=/etc/etcd/config.env
 ExecStartPre=-/usr/bin/docker rm -f etcd
-ExecStart=/opt/etcd/bin/etcd-wrapper.sh
+ExecStart=/opt/etcd/bin/etcd-wrapper
 ExecStop=-/usr/bin/docker stop etcd
 
 Restart=always

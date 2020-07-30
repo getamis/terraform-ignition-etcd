@@ -22,6 +22,6 @@ data "ignition_systemd_unit" "etcd_data_mount" {
 
   content = templatefile("${path.module}/templates/data.mount.tpl", {
     device_name = var.device_name
-    data_path   = "/etcd"
+    data_path   = var.data_path
   })
 }
