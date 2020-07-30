@@ -1,6 +1,6 @@
 TF_DOCS := $(shell which terraform-docs 2> /dev/null)
 TF_FILES = $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u)
-TF_EXAMPLES = $(shell find ./examples -type f -name "*.tf" -exec dirname {} \;|sort -u)
+TF_TESTS = $(shell find ./test -type f -name "*.tf" -exec dirname {} \;|sort -u)
 
 define terraform-docs
 	$(if $(TF_DOCS),,$(error "terraform-docs revision >= a8b59f8 is required (https://github.com/segmentio/terraform-docs)"))
@@ -13,11 +13,11 @@ endef
 
 .PHONY: validate
 validate:
-	@for m in $(TF_EXAMPLES); do terraform init "$$m" > /dev/null 2>&1; echo "$$m: "; terraform validate "$$m"; done
+	@for m in $(TF_TESTS); do terraform init "$$m" > /dev/null 2>&1; echo "$$m: "; terraform validate "$$m"; done
 
 .PHONY: validate-ign
 validate-ign:
-	@(cd examples && \
+	@(cd tests && \
 	  terraform init > /dev/null 2>&1 && \
 	  terraform apply -auto-approve && \
 	  (ignition-validate output/etcd.ign && echo "√ output/etcd.ign: Success! The ignition configuration is valid."))

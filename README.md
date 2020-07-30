@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/github/license/getamis/terraform-etcd-ignition)](https://github.com/getamis/terraform-etcd-ignition/blob/master/LICENSE)
+![Terraform test](https://github.com/getamis/terraform-etcd-ignition/workflows/Terraform%20test/badge.svg) [![GitHub license](https://img.shields.io/github/license/getamis/terraform-etcd-ignition)](https://github.com/getamis/terraform-etcd-ignition/blob/master/LICENSE)
 # Terraform etcd Ignition module
 A terraform Ignition module to bootstrap an etcd cluster with CoreOS Container Linux/Flatcar Container Linux/Fedora CoreOS. (Experiment)
 
