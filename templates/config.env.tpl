@@ -8,18 +8,19 @@ USER_ID=${user_id}
 CLOUD_PROVIDER=${cloud_provider}
 
 # ETCD OFFICIAL CONFIGURATION
-ETCD_CERT_PATH=${certs_path}
-ETCD_CERT_FILE=${certs_path}/server.crt
-ETCD_KEY_FILE=${certs_path}/server.key
-ETCD_PEER_CERT_FILE=${certs_path}/peer.crt
-ETCD_PEER_KEY_FILE=${certs_path}/peer.key
-ETCD_PEER_TRUSTED_CA_FILE=${certs_path}/ca.crt
-ETCD_TRUSTED_CA_FILE=${certs_path}/ca.crt
+ETCD_CERT_PATH=${pki_path}
+ETCD_CERT_FILE=${pki_path}/server.crt
+ETCD_KEY_FILE=${pki_path}/server.key
+ETCD_PEER_CERT_FILE=${pki_path}/peer.crt
+ETCD_PEER_KEY_FILE=${pki_path}/peer.key
+ETCD_PEER_TRUSTED_CA_FILE=${pki_path}/ca.crt
+ETCD_TRUSTED_CA_FILE=${pki_path}/ca.crt
 ETCD_PEER_CLIENT_CERT_AUTH=true
 ETCD_CLIENT_CERT_AUTH=true
 ETCD_LISTEN_CLIENT_URLS=${scheme}://0.0.0.0:${client_port}
 ETCD_LISTEN_PEER_URLS=${scheme}://0.0.0.0:${peer_port}
 ETCD_DATA_DIR=${data_path}
-ETCD_DISCOVERY_SRV=${discovery_service}
+ETCD_DISCOVERY_SRV=${discovery_service_srv}
 ETCD_INITIAL_CLUSTER_TOKEN=${cluster_name}
 ETCD_LOGGER=zap
+ETCD_EXTRA_FLAGS="%{ for flag, value in extra_flags ~}%{ if value != "" ~} -${flag}=${value} %{ endif ~}%{ endfor ~}"

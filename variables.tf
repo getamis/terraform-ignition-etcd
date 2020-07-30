@@ -1,5 +1,6 @@
 variable "name" {
-  type = string
+  description = "Human-readable name for this member."
+  type        = string
 }
 
 variable "containers" {
@@ -23,6 +24,12 @@ variable "certs" {
   default     = {}
 }
 
+variable "pki_path" {
+  description = "The etcd certificates path"
+  type        = string
+  default     = "/etc/ssl/etcd"
+}
+
 variable "cert_file_owner" {
   type = object({
     uid = number
@@ -35,23 +42,34 @@ variable "cert_file_owner" {
   }
 }
 
-variable "discovery_service" {
-  type = string
+variable "discovery_service_srv" {
+  description = "DNS srv domain used to bootstrap the cluster."
+  type        = string
 }
 
 variable "client_port" {
-  default = 2379
+  description = "etcd client communication port."
+  default     = 2379
 }
 
 variable "peer_port" {
-  default = 2380
+  description = "etcd server to server port."
+  default     = 2380
 }
 
 variable "data_path" {
-  type    = string
-  default = "/var/lib/etcd"
+  description = "The path for data store."
+  type        = string
+  default     = "/var/lib/etcd"
 }
 
 variable "device_name" {
-  type = string
+  description = "Which block device will attach to data path."
+  type        = string
+  default     = "/dev/nvme1n1"
+}
+
+variable "extra_flags" {
+  description = "The extra flags of etcd. The variables need to follow https://etcd.io/docs/v3.4.0/op-guide/configuration/. Do not use underline."
+  default     = {}
 }
