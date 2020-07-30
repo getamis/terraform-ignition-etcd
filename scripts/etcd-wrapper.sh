@@ -65,4 +65,4 @@ exec ${DOCKER} run \
       --advertise-client-urls=${SCHEME}://${HOST_IP}:${CLIENT_PORT} \
       --initial-advertise-peer-urls=${SCHEME}://${HOST_IP}:${PEER_PORT} \
       --initial-cluster-state=${INITIAL_CLUSTER_STATE} \
-      "${ETCD_EXTRA_FLAGS}"
+      "${ETCD_EXTRA_FLAGS} $@"
