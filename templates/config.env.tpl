@@ -23,4 +23,4 @@ ETCD_DATA_DIR=${data_path}
 ETCD_DISCOVERY_SRV=${discovery_service_srv}
 ETCD_INITIAL_CLUSTER_TOKEN=${cluster_name}
 ETCD_LOGGER=zap
-ETCD_EXTRA_FLAGS="%{ for flag, value in extra_flags ~}%{ if value != "" ~} -${flag}=${value} %{ endif ~}%{ endfor ~}"
+ETCD_EXTRA_FLAGS="%{ for flag, value in extra_flags ~}%{ if value != "" ~} --${flag}=${value} %{ endif ~}%{ endfor ~}"
