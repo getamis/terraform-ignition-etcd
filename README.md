@@ -2,6 +2,11 @@
 # Terraform etcd Ignition module
 A terraform Ignition module to bootstrap an etcd cluster with CoreOS Container Linux/Flatcar Container Linux/Fedora CoreOS. (Experiment)
 
+## Features
+
+* etcd v3.4.5+.
+* On-cluster etcd with TLS. 
+
 ## Requirements
 
 * Terraform v0.12.0+.
@@ -17,7 +22,7 @@ module "ignition_etcd" {
   name                  = "test"
   discovery_service_srv = "etcd.example.com"
 
-  // Create certs through https://registry.terraform.io/providers/hashicorp/tls/latest/docs.
+  // Create certs through https://github.com/getamis/vishwakarma/tree/master/modules/tls.
   certs = {
     ca_cert     = module.etcd_ca.cert_pem
     client_key  = module.etcd_client_cert.private_key_pem
