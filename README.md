@@ -1,10 +1,10 @@
-![Terraform test](https://github.com/getamis/terraform-etcd-ignition/workflows/Terraform%20test/badge.svg) [![GitHub license](https://img.shields.io/github/license/getamis/terraform-etcd-ignition)](https://github.com/getamis/terraform-etcd-ignition/blob/master/LICENSE)
+![Terraform test](https://github.com/getamis/terraform-ignition-etcd/workflows/Terraform%20test/badge.svg) [![GitHub license](https://img.shields.io/github/license/getamis/terraform-ignition-etcd)](https://github.com/getamis/terraform-ignition-etcd/blob/master/LICENSE)
 # Terraform etcd Ignition module
 A terraform Ignition module to bootstrap an etcd cluster with CoreOS Container Linux/Flatcar Container Linux/Fedora CoreOS. (Experiment)
 
 ## Features
 
-* etcd v3.4.5+.
+* etcd v3.4.0+.
 * On-cluster etcd with TLS. 
 
 ## Requirements
@@ -17,7 +17,7 @@ The following block is show you how to use this module for bootstrapping a clust
  
 ```hcl
 module "ignition_etcd" {
-  source = "git::ssh://git@github.com/getamis/terraform-etcd-ignition"
+  source = "git::ssh://git@github.com/getamis/terraform-ignition-etcd"
 
   name                  = "test"
   discovery_service_srv = "etcd.example.com"
