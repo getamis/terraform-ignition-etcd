@@ -9,10 +9,10 @@ project adheres to [Semantic Versioning](http://semver.org/)
 <a name="v0.1.0"></a>
 ## v0.1.0 - 2020-08-04
 
-- improvement: update README.md ([#3](https://github.com/getamis/terraform-etcd-ignition/issues/3))
-- Merge pull request [#2](https://github.com/getamis/terraform-etcd-ignition/issues/2) from kairen/fix-etcd-service
+- improvement: update README.md ([#3](https://github.com/getamis/terraform-ignition-etcd/issues/3))
+- Merge pull request [#2](https://github.com/getamis/terraform-ignition-etcd/issues/2) from kairen/fix-etcd-service
 - Fix config.env and wrapper script
-- Merge pull request [#1](https://github.com/getamis/terraform-etcd-ignition/issues/1) from kairen/update
+- Merge pull request [#1](https://github.com/getamis/terraform-ignition-etcd/issues/1) from kairen/update
 - Rename examples dir to tests
 - Fix etcd wrapper script
 - Fix docs
@@ -21,4 +21,4 @@ project adheres to [Semantic Versioning](http://semver.org/)
 - Init
 
 
-[Unreleased]: https://github.com/getamis/terraform-etcd-ignition/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/getamis/terraform-ignition-etcd/compare/v0.1.0...HEAD
