@@ -4,7 +4,7 @@ data "ignition_file" "etcd_wrapper_sh" {
   mode       = 500
 
   content {
-    content = "${file("${path.module}/scripts/etcd-wrapper.sh")}"
+    content = file("${path.module}/scripts/etcd-wrapper.sh")
   }
 }
 
