@@ -3,7 +3,7 @@ TF_FILES = $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u)
 TF_TESTS = $(shell find ./test -type f -name "*.tf" -exec dirname {} \;|sort -u)
 
 SEMTAG=tools/semtag
-TAG_QUERY=v0.1.0..
+TAG_QUERY=v1.0.0..
 
 scope ?= "minor"
 
@@ -33,7 +33,7 @@ fmt:
 
 .PHONY: changelog
 changelog:
-	git-chglog -o CHANGELOG.md --next-tag `$(SEMTAG) final -s $(scope) -o -f` $(TAG_QUERY)
+	git-chglog -o CHANGELOG.md $(TAG_QUERY)
 
 .PHONY: release
 release:
