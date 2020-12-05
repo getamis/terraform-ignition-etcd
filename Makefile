@@ -1,6 +1,6 @@
 TF_DOCS := $(shell which terraform-docs 2> /dev/null)
 TF_FILES = $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u)
-TF_TESTS = $(shell find ./test -type f -name "*.tf" -exec dirname {} \;|sort -u)
+TF_TESTS = $(shell find ./tests -type f -name "*.tf" -exec dirname {} \;|sort -u)
 
 SEMTAG=tools/semtag
 TAG_QUERY=v1.0.0..
