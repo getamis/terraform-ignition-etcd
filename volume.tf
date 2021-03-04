@@ -17,8 +17,12 @@ data "ignition_disk" "ectd_data" {
   }
 }
 
+locals {
+  systemd_etcd_data_mount_name = replace(trimprefix(var.data_path, "/"), "/", "-")
+}
+
 data "ignition_systemd_unit" "etcd_data_mount" {
-  name = "etcd.mount"
+  name = "${local.systemd_etcd_data_mount_name}.mount"
 
   content = templatefile("${path.module}/templates/data.mount.tpl", {
     device_name = var.device_name
