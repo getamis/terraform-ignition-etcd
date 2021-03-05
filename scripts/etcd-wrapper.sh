@@ -27,16 +27,6 @@ require_ev_one ETCD_IMAGE ETCD_IMAGE_TAG
 ETCD_IMAGE_REPO="${ETCD_IMAGE_REPO:-${ETCD_ACI:-quay.io/coreos/etcd}}"
 ETCD_IMAGE="${ETCD_IMAGE:-${ETCD_IMAGE_REPO}:${ETCD_IMAGE_TAG}}"
 
-if [[ ! -e "${ETCD_DATA_DIR}" ]]; then
-	mkdir -p ${ETCD_DATA_DIR}
-	chown "${USER_ID}:${USER_ID}" "${ETCD_DATA_DIR}"
-  INITIAL_CLUSTER_STATE=new
-else
-  INITIAL_CLUSTER_STATE=existing
-fi
-
-DOCKER_RUN_ARGS="${DOCKER_RUN_ARGS} ${DOCKER_OPTS}"
-
 if [[ $CLOUD_PROVIDER == "aws" ]]; then 
   export HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/local-hostname | cut -d '.' -f 1)
   export HOST_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
@@ -44,6 +34,22 @@ fi
 
 [[ ! -n "$HOSTNAME" ]] && export HOSTNAME=$(hostname)
 [[ ! -n "$HOST_IP" ]] && export HOST_IP=$(ip -o route get 8.8.8.8 | sed -e 's/^.* src \([^ ]*\) .*$/\1/')
+
+if [ -d "${ETCD_DATA_DIR}" ]; then
+  CLUSTER_STATE_CHECK="${ETCD_DATA_DIR}/${HOST_IP}.state"
+  if [ -f "$CLUSTER_STATE_CHECK" ]; then
+    INITIAL_CLUSTER_STATE=existing
+  else
+    INITIAL_CLUSTER_STATE=new
+    chown "${USER_ID}:${USER_ID}" "${ETCD_DATA_DIR}"
+    touch ${CLUSTER_STATE_CHECK}
+  fi
+else
+  echo "ERROR: Failed to find the '${ETCD_DATA_DIR}'.  Please recheck the mount point." 1>&2
+  exit 1
+fi
+
+DOCKER_RUN_ARGS="${DOCKER_RUN_ARGS} ${DOCKER_OPTS}"
 
 DOCKER="${DOCKER:-/usr/bin/docker}"
 set -x
