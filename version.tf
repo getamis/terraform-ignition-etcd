@@ -3,6 +3,6 @@ terraform {
 
   required_providers {
     ignition = "~> 1.2"
-    random = ">= 3.0"
+    random = ">= 2.2.0"
   }
 }
