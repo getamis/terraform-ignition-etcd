@@ -1,6 +1,6 @@
 locals {
   systemd_etcd_data_mount_name = replace(trimprefix(var.data_path, "/"), "/", "-")
-  device_partition_name = "${var.device_name}p1"
+  device_partition_name        = "${var.device_name}p1"
 }
 
 data "ignition_disk" "ectd_data" {
@@ -9,25 +9,21 @@ data "ignition_disk" "ectd_data" {
   wipe_table = false
 
   partition {
-    label  = "ETCD-DATA"
-    number = 1
-    start  = 0
-    size   = 0
+    label    = "ETCD-DATA"
+    number   = 1
+    startmib = 0
+    sizemib  = 0
   }
 }
 
 resource "random_uuid" "etcd_data_fs_uuid" {}
 
 data "ignition_filesystem" "ectd_data" {
-  name = "etcd-data"
-
-  mount {
-    device          = local.device_partition_name
-    format          = "ext4"
-    wipe_filesystem = false
-    label           = "etcd-data"
-    uuid            = random_uuid.etcd_data_fs_uuid.result
-  }
+  device          = local.device_partition_name
+  format          = "ext4"
+  wipe_filesystem = false
+  label           = "etcd-data"
+  uuid            = random_uuid.etcd_data_fs_uuid.result
 }
 
 data "ignition_systemd_unit" "etcd_data_mount" {

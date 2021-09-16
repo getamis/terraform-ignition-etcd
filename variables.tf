@@ -3,11 +3,12 @@ variable "name" {
   type        = string
 }
 
-variable "containers" {
-  description = "Desired containers(etcd) repo and tag."
+
+variable "binaries" {
+  description = "Desired binaries(etcd) url and checksum."
   type = map(object({
-    repo = string
-    tag  = string
+    source   = string
+    checksum = string
   }))
   default = {}
 }

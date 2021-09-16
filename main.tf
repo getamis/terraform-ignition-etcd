@@ -1,7 +1,7 @@
 data "ignition_file" "etcd_wrapper_sh" {
-  filesystem = "root"
-  path       = "/opt/etcd/bin/etcd-wrapper"
-  mode       = 500
+  path      = "/usr/local/bin/etcd-wrapper.sh"
+  mode      = 500
+  overwrite = true
 
   content {
     content = file("${path.module}/scripts/etcd-wrapper.sh")
@@ -9,14 +9,12 @@ data "ignition_file" "etcd_wrapper_sh" {
 }
 
 data "ignition_file" "etcd_env" {
-  filesystem = "root"
-  path       = "/etc/etcd/config.env"
-  mode       = 420
+  path      = "/etc/etcd/config.env"
+  mode      = 420
+  overwrite = true
 
   content {
     content = templatefile("${path.module}/templates/config.env.tpl", {
-      image_repo            = local.containers["etcd"].repo
-      image_tag             = local.containers["etcd"].tag
       cloud_provider        = var.cloud_provider
       user_id               = var.cert_file_owner["uid"]
       cluster_name          = var.name
@@ -28,6 +26,17 @@ data "ignition_file" "etcd_env" {
       peer_port             = var.peer_port
       extra_flags           = local.extra_flags
     })
+  }
+}
+
+data "ignition_file" "etcd_tgz" {
+  path      = "/opt/etcd/etcd-linux-amd64.tar.gz"
+  mode      = 500
+  overwrite = true
+
+  source {
+    source       = local.binaries["etcd"].source
+    verification = local.binaries["etcd"].checksum
   }
 }
 

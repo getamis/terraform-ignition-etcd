@@ -1,8 +1,11 @@
 terraform {
-  required_version = "~> 0.12.29"
+  required_version = ">= 1.0.0"
 
   required_providers {
-    ignition = "~> 1.2"
     random = ">= 2.2.0"
+    ignition = {
+      source  = "community-terraform-providers/ignition"
+      version = "~> 2.1"
+    }
   }
 }

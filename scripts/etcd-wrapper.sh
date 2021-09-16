@@ -1,5 +1,5 @@
 #!/bin/bash
-# Wrapper for launching etcd via docker.
+# Wrapper for launching etcd via podman.
 
 set -e
 
@@ -22,10 +22,14 @@ function require_ev_one() {
 	exit 1
 }
 
-require_ev_one ETCD_IMAGE ETCD_IMAGE_TAG
-
 ETCD_IMAGE_REPO="${ETCD_IMAGE_REPO:-${ETCD_ACI:-quay.io/coreos/etcd}}"
 ETCD_IMAGE="${ETCD_IMAGE:-${ETCD_IMAGE_REPO}:${ETCD_IMAGE_TAG}}"
+
+ETCD_BINARY=/usr/local/bin/etcd
+
+if ! test -f ${ETCD_BINARY} ; then
+  tar -xvf /opt/etcd/etcd-linux-amd64.tar.gz -C /usr/local/bin --strip-components=1
+fi
 
 if [[ $CLOUD_PROVIDER == "aws" ]]; then 
   export HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/local-hostname | cut -d '.' -f 1)
@@ -49,26 +53,13 @@ else
   exit 1
 fi
 
-DOCKER_RUN_ARGS="${DOCKER_RUN_ARGS} ${DOCKER_OPTS}"
+PODMAN_RUN_ARGS="${PODMAN_RUN_ARGS} ${PODMAN_OPTS}"
 
-DOCKER="${DOCKER:-/usr/bin/docker}"
+PODMAN="${PODMAN:-/usr/bin/podman}"
 set -x
-exec ${DOCKER} run \
-  -v ${ETCD_DATA_DIR}:${ETCD_DATA_DIR}:rw \
-  -v /etc/ssl/certs:/etc/ssl/certs:ro \
-  -v ${ETCD_CERT_PATH}:${ETCD_CERT_PATH}:rw \
-  -v /usr/share/ca-certificates:/usr/share/ca-certificates:ro \
-  -v /etc/hosts:/etc/hosts:ro \
-  --env-file=/etc/etcd/config.env \
-  --net=host \
-  --pid=host \
-  --user=${USER_ID} \
-  --name=etcd \
-  ${DOCKER_RUN_ARGS} \
-  ${ETCD_IMAGE} \
-    etcd \
-      --name=${HOSTNAME} \
-      --advertise-client-urls=${SCHEME}://${HOST_IP}:${CLIENT_PORT} \
-      --initial-advertise-peer-urls=${SCHEME}://${HOST_IP}:${PEER_PORT} \
-      --initial-cluster-state=${INITIAL_CLUSTER_STATE} \
-      ${ETCD_EXTRA_FLAGS}
+exec ${ETCD_BINARY} \
+  --name=${HOSTNAME} \
+  --advertise-client-urls=${SCHEME}://${HOST_IP}:${CLIENT_PORT} \
+  --initial-advertise-peer-urls=${SCHEME}://${HOST_IP}:${PEER_PORT} \
+  --initial-cluster-state=${INITIAL_CLUSTER_STATE} \
+  ${ETCD_EXTRA_FLAGS}

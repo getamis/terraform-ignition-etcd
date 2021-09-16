@@ -7,6 +7,7 @@ output "systemd_units" {
 
 output "files" {
   value = [
+    data.ignition_file.etcd_tgz.rendered,
     data.ignition_file.etcd_env.rendered,
     data.ignition_file.etcd_wrapper_sh.rendered,
     data.ignition_file.etcd_ca.rendered,

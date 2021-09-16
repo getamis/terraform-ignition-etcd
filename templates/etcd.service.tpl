@@ -1,16 +1,18 @@
 [Unit]
 Description=etcd service
-Requires=network-online.target
+Wants=network-online.target network.target
+After=network-online.target
 
 [Service]
-Environment="PATH=/opt/bin:/opt/etcd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 EnvironmentFile=/etc/etcd/config.env
-ExecStartPre=-/usr/bin/docker rm -f etcd
-ExecStart=/opt/etcd/bin/etcd-wrapper
-ExecStop=-/usr/bin/docker stop etcd
+ExecStartPre=-/usr/bin/podman rm -f etcd
+ExecStart=/usr/local/bin/etcd-wrapper.sh
+ExecStop=-/usr/bin/podman stop etcd
 
-Restart=always
-RestartSec=10
+Restart=on-failure
+RestartSec=10s
+TimeoutStartSec=0
+LimitNOFILE=40000
 
 [Install]
 WantedBy=multi-user.target
