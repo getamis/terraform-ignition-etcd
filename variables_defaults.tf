@@ -2,11 +2,9 @@ locals {
   containers = merge({
     etcd = {
       repo = "quay.io/coreos/etcd"
-      tag  = "v3.4.14"
+      tag  = "v3.5.0"
     }
   }, var.containers)
 
-  extra_flags = merge({
-    debug = false
-  }, var.extra_flags)
+  extra_flags = var.extra_flags
 }
