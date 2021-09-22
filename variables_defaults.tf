@@ -6,5 +6,7 @@ locals {
     }
   }, var.containers)
 
-  extra_flags = var.extra_flags
+  extra_flags = merge({
+    "log-level" = var.log_level
+  }, var.extra_flags)
 }
