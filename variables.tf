@@ -69,6 +69,12 @@ variable "device_name" {
   default     = "/dev/nvme1n1"
 }
 
+variable "log_level" {
+  description = "etcd log level, supports debug, info, warn, error, panic, or fatal"
+  type        = string
+  default     = "info"
+}
+
 variable "extra_flags" {
   description = "The extra flags of etcd. The variables need to follow https://etcd.io/docs/v3.4.0/op-guide/configuration/. Do not use underline."
   default     = {}
