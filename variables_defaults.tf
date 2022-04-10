@@ -2,7 +2,7 @@ locals {
   containers = merge({
     etcd = {
       repo = "quay.io/coreos/etcd"
-      tag  = "v3.5.0"
+      tag  = "v3.5.2"
     }
   }, var.containers)
 
