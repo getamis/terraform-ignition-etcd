@@ -1,6 +1,6 @@
 locals {
   systemd_etcd_data_mount_name = replace(trimprefix(var.data_path, "/"), "/", "-")
-  device_partition_name = "${var.device_name}p1"
+  device_partition_name        = "${var.device_name}p1"
 }
 
 data "ignition_disk" "ectd_data" {

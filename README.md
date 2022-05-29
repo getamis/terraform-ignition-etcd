@@ -4,12 +4,12 @@ A terraform Ignition module to bootstrap an etcd cluster with CoreOS Container L
 
 ## Features
 
-* etcd v3.4.0+.
+* etcd v3.5.0+.
 * On-cluster etcd with TLS. 
 
 ## Requirements
 
-* Terraform v0.12.0+.
+* Terraform v0.13.1+.
 * [terraform-provider-ignition](https://github.com/terraform-providers/terraform-provider-ignition) 1.2.1+.
 
 ## Usage example
