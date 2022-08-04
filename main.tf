@@ -1,5 +1,5 @@
 data "ignition_file" "etcd_wrapper_sh" {
-  filesystem = "root"
+  
   path       = "/opt/etcd/bin/etcd-wrapper"
   mode       = 500
 
@@ -9,7 +9,7 @@ data "ignition_file" "etcd_wrapper_sh" {
 }
 
 data "ignition_file" "etcd_env" {
-  filesystem = "root"
+  
   path       = "/etc/etcd/config.env"
   mode       = 420
 

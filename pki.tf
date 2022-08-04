@@ -3,7 +3,7 @@ data "ignition_file" "etcd_ca" {
   mode       = 420
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["ca_cert"]
@@ -15,7 +15,7 @@ data "ignition_file" "etcd_client_cert" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["client_cert"]
@@ -27,7 +27,7 @@ data "ignition_file" "etcd_client_key" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["client_key"]
@@ -39,7 +39,7 @@ data "ignition_file" "etcd_server_cert" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["server_cert"]
@@ -51,7 +51,7 @@ data "ignition_file" "etcd_server_key" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["server_key"]
@@ -63,7 +63,7 @@ data "ignition_file" "etcd_peer_cert" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["peer_cert"]
@@ -75,7 +75,7 @@ data "ignition_file" "etcd_peer_key" {
   mode       = 256
   uid        = var.cert_file_owner["uid"]
   gid        = var.cert_file_owner["gid"]
-  filesystem = "root"
+  
 
   content {
     content = var.certs["peer_key"]
