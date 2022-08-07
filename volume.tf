@@ -9,10 +9,10 @@ data "ignition_disk" "ectd_data" {
   wipe_table = false
 
   partition {
-    label  = "ETCD-DATA"
-    number = 1
+    label    = "ETCD-DATA"
+    number   = 1
     sizemib  = 0
-    startmib   = 0
+    startmib = 0
   }
 }
 
