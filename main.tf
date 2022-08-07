@@ -1,5 +1,5 @@
 data "ignition_file" "etcd_wrapper_sh" {
-  
+  overwrite = true
   path       = "/opt/etcd/bin/etcd-wrapper"
   mode       = 500
 
@@ -9,6 +9,7 @@ data "ignition_file" "etcd_wrapper_sh" {
 }
 
 data "ignition_file" "etcd_env" {
+  overwrite = true
   
   path       = "/etc/etcd/config.env"
   mode       = 420
