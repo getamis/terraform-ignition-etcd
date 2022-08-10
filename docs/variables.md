@@ -26,19 +26,19 @@ No modules.
 | Name | Type |
 |------|------|
 | [random_uuid.etcd_data_fs_uuid](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) | resource |
-| [ignition_disk.ectd_data](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/disk) | data source |
-| [ignition_file.etcd_ca](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_client_cert](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_client_key](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_env](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_peer_cert](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_peer_key](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_server_cert](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_server_key](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_wrapper_sh](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_filesystem.ectd_data](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/filesystem) | data source |
-| [ignition_systemd_unit.etcd_data_mount](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
-| [ignition_systemd_unit.etcd_service](https://registry.terraform.io/providers/terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
+| [ignition_disk.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/disk) | data source |
+| [ignition_file.etcd_ca](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_client_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_client_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_env](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_peer_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_peer_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_server_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_server_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_file.etcd_wrapper_sh](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
+| [ignition_filesystem.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/filesystem) | data source |
+| [ignition_systemd_unit.etcd_data_mount](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
+| [ignition_systemd_unit.etcd_service](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
 
 ## Inputs
 

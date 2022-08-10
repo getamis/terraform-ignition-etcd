@@ -1,7 +1,7 @@
 data "ignition_file" "etcd_wrapper_sh" {
-  filesystem = "root"
-  path       = "/opt/etcd/bin/etcd-wrapper"
-  mode       = 500
+  overwrite = true
+  path      = "/opt/etcd/bin/etcd-wrapper"
+  mode      = 500
 
   content {
     content = file("${path.module}/scripts/etcd-wrapper.sh")
@@ -9,9 +9,10 @@ data "ignition_file" "etcd_wrapper_sh" {
 }
 
 data "ignition_file" "etcd_env" {
-  filesystem = "root"
-  path       = "/etc/etcd/config.env"
-  mode       = 420
+  overwrite = true
+
+  path = "/etc/etcd/config.env"
+  mode = 420
 
   content {
     content = templatefile("${path.module}/templates/config.env.tpl", {
