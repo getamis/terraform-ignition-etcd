@@ -9,7 +9,7 @@ A terraform Ignition module to bootstrap an etcd cluster with CoreOS Container L
 
 ## Requirements
 
-* Terraform v0.13.1+.
+* Terraform v1.2.0+.
 * [terraform-provider-ignition](https://github.com/terraform-providers/terraform-provider-ignition) 1.2.1+.
 
 ## Usage example
