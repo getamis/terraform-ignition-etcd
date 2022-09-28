@@ -7,6 +7,12 @@ SCHEME=${scheme}
 USER_ID=${user_id}
 CLOUD_PROVIDER=${cloud_provider}
 
+# ETCD METRICS PROXY CONFIGURATION
+ETCD_METRICS_PROXY_IMAGE_REPO=${proxy_image_repo}
+ETCD_METRICS_PROXY_IMAGE_TAG=${proxy_image_tag}
+ETCD_METRICS_PROXY_PORT=${proxy_port}
+
+
 # ETCD OFFICIAL CONFIGURATION
 ETCD_CERT_PATH=${pki_path}
 ETCD_CERT_FILE=${pki_path}/server.crt
