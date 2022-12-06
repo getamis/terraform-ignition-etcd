@@ -7,14 +7,14 @@ This document gives an overview of variables used in the Ignition of the etcd mo
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
-| <a name="requirement_ignition"></a> [ignition](#requirement\_ignition) | ~> 1.2.1 |
+| <a name="requirement_ignition"></a> [ignition](#requirement\_ignition) | 2.1.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_ignition"></a> [ignition](#provider\_ignition) | ~> 1.2.1 |
+| <a name="provider_ignition"></a> [ignition](#provider\_ignition) | 2.1.2 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.2.0 |
 
 ## Modules
@@ -26,19 +26,21 @@ No modules.
 | Name | Type |
 |------|------|
 | [random_uuid.etcd_data_fs_uuid](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) | resource |
-| [ignition_disk.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/disk) | data source |
-| [ignition_file.etcd_ca](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_client_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_client_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_env](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_peer_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_peer_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_server_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_server_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_file.etcd_wrapper_sh](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/file) | data source |
-| [ignition_filesystem.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/filesystem) | data source |
-| [ignition_systemd_unit.etcd_data_mount](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
-| [ignition_systemd_unit.etcd_service](https://registry.terraform.io/providers/community-terraform-providers/ignition/latest/docs/data-sources/systemd_unit) | data source |
+| [ignition_disk.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/disk) | data source |
+| [ignition_file.etcd_ca](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_client_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_client_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_env](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_metrics_proxy_wrapper_sh](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_peer_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_peer_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_server_cert](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_server_key](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_file.etcd_wrapper_sh](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/file) | data source |
+| [ignition_filesystem.ectd_data](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/filesystem) | data source |
+| [ignition_systemd_unit.etcd_data_mount](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/systemd_unit) | data source |
+| [ignition_systemd_unit.etcd_metrics_proxy_service](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/systemd_unit) | data source |
+| [ignition_systemd_unit.etcd_service](https://registry.terraform.io/providers/community-terraform-providers/ignition/2.1.2/docs/data-sources/systemd_unit) | data source |
 
 ## Inputs
 
@@ -48,15 +50,17 @@ No modules.
 | <a name="input_certs"></a> [certs](#input\_certs) | The etcd certificates. | `map(string)` | `{}` | no |
 | <a name="input_client_port"></a> [client\_port](#input\_client\_port) | etcd client communication port. | `number` | `2379` | no |
 | <a name="input_cloud_provider"></a> [cloud\_provider](#input\_cloud\_provider) | The name of public cloud. | `string` | `"aws"` | no |
-| <a name="input_containers"></a> [containers](#input\_containers) | Desired containers(etcd) repo and tag. | <pre>map(object({<br>    repo = string<br>    tag  = string<br>  }))</pre> | `{}` | no |
+| <a name="input_containers"></a> [containers](#input\_containers) | Desired containers(etcd, etcd-metrics-proxy) repo and tag. | <pre>map(object({<br>    repo = string<br>    tag  = string<br>  }))</pre> | `{}` | no |
 | <a name="input_data_path"></a> [data\_path](#input\_data\_path) | The path for data store. | `string` | `"/var/lib/etcd"` | no |
 | <a name="input_device_name"></a> [device\_name](#input\_device\_name) | Which block device will attach to data path. | `string` | `"/dev/nvme1n1"` | no |
 | <a name="input_discovery_service_srv"></a> [discovery\_service\_srv](#input\_discovery\_service\_srv) | DNS srv domain used to bootstrap the cluster. | `string` | n/a | yes |
+| <a name="input_enable_metrics_proxy"></a> [enable\_metrics\_proxy](#input\_enable\_metrics\_proxy) | enable etcd-metrics-proxy to allow scrape metrics without etcd certificates. | `bool` | `true` | no |
 | <a name="input_extra_flags"></a> [extra\_flags](#input\_extra\_flags) | The extra flags of etcd. The variables need to follow https://etcd.io/docs/v3.4.0/op-guide/configuration/. Do not use underline. | `map` | `{}` | no |
 | <a name="input_log_level"></a> [log\_level](#input\_log\_level) | etcd log level, supports debug, info, warn, error, panic, or fatal | `string` | `"info"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Human-readable name for this member. | `string` | n/a | yes |
 | <a name="input_peer_port"></a> [peer\_port](#input\_peer\_port) | etcd server to server port. | `number` | `2380` | no |
 | <a name="input_pki_path"></a> [pki\_path](#input\_pki\_path) | The etcd certificates path | `string` | `"/etc/ssl/etcd"` | no |
+| <a name="input_proxy_port"></a> [proxy\_port](#input\_proxy\_port) | etcd-metrics-proxy expose port. | `number` | `2381` | no |
 
 ## Outputs
 

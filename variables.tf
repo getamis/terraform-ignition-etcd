@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "containers" {
-  description = "Desired containers(etcd) repo and tag."
+  description = "Desired containers(etcd, etcd-metrics-proxy) repo and tag."
   type = map(object({
     repo = string
     tag  = string
@@ -57,6 +57,11 @@ variable "peer_port" {
   default     = 2380
 }
 
+variable "proxy_port" {
+  description = "etcd-metrics-proxy expose port."
+  default     = 2381
+}
+
 variable "data_path" {
   description = "The path for data store."
   type        = string
@@ -78,4 +83,10 @@ variable "log_level" {
 variable "extra_flags" {
   description = "The extra flags of etcd. The variables need to follow https://etcd.io/docs/v3.4.0/op-guide/configuration/. Do not use underline."
   default     = {}
+}
+
+variable "enable_metrics_proxy" {
+  description = "enable etcd-metrics-proxy to allow scrape metrics without etcd certificates."
+  type        = bool
+  default     = true
 }
