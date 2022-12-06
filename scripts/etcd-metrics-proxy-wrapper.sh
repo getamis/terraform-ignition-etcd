@@ -14,6 +14,14 @@ function require_ev_all() {
 
 ETCD_METRICS_PROXY_IMAGE=${ETCD_METRICS_PROXY_IMAGE_REPO}:${ETCD_METRICS_PROXY_IMAGE_TAG}
 
+# Waiting for ENI (eth1) to be attached to the instance
+set +e
+until [[ $(ifconfig eth1 2>/dev/null) ]]; do
+  echo "Waiting for ENI (eth1) to be attached..."
+  sleep 10
+done
+set -e
+
 if [[ $CLOUD_PROVIDER == "aws" ]]; then 
   export HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/local-hostname)
   export HOST_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
