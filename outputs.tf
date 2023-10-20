@@ -2,6 +2,7 @@ output "systemd_units" {
   value = concat([
     data.ignition_systemd_unit.etcd_service.rendered,
     data.ignition_systemd_unit.etcd_data_mount.rendered,
+    data.ignition_systemd_unit.init_nerdctl.rendered,
     ],
     var.enable_metrics_proxy ? [
       data.ignition_systemd_unit.etcd_metrics_proxy_service.rendered
@@ -19,7 +20,9 @@ output "files" {
     data.ignition_file.etcd_server_cert.rendered,
     data.ignition_file.etcd_server_key.rendered,
     data.ignition_file.etcd_peer_cert.rendered,
-    data.ignition_file.etcd_peer_key.rendered
+    data.ignition_file.etcd_peer_key.rendered,
+    data.ignition_file.init_nerdctl.rendered,
+    data.ignition_file.nerdctl.rendered,
     ],
     var.enable_metrics_proxy ? [
       data.ignition_file.etcd_metrics_proxy_wrapper_sh.rendered
