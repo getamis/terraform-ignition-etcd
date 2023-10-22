@@ -1,13 +1,14 @@
 [Unit]
 Description=etcd service
+After=init-nerdctl.service
 Requires=network-online.target
 
 [Service]
 Environment="PATH=/opt/bin:/opt/etcd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 EnvironmentFile=/etc/etcd/config.env
-ExecStartPre=-/usr/bin/docker rm -f etcd
+ExecStartPre=-/opt/bin/nerdctl rm -f etcd
 ExecStart=/opt/etcd/bin/etcd-wrapper
-ExecStop=-/usr/bin/docker stop etcd
+ExecStop=-/opt/bin/nerdctl stop etcd
 
 Restart=always
 RestartSec=10
