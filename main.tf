@@ -42,9 +42,9 @@ data "ignition_systemd_unit" "etcd_service" {
 }
 
 data "ignition_file" "etcd_metrics_proxy_wrapper_sh" {
-  overwrite   = true
-  path       = "/opt/etcd/bin/etcd-metrics-proxy-wrapper"
-  mode       = 500
+  overwrite = true
+  path      = "/opt/etcd/bin/etcd-metrics-proxy-wrapper"
+  mode      = 500
 
   content {
     content = file("${path.module}/scripts/etcd-metrics-proxy-wrapper.sh")
