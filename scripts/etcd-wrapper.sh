@@ -1,5 +1,5 @@
 #!/bin/bash
-# Wrapper for launching etcd via nerdctl.
+# Wrapper for launching etcd via docker.
 
 set -e
 
@@ -60,9 +60,9 @@ fi
 
 DOCKER_RUN_ARGS="${DOCKER_RUN_ARGS} ${DOCKER_OPTS}"
 
-NERDCTL="${NERDCTL:-/opt/bin/nerdctl}"
+DOCKER="${DOCKER:-/usr/bin/docker}"
 set -x
-exec ${NERDCTL} run \
+exec ${DOCKER} run \
   -v ${ETCD_DATA_DIR}:${ETCD_DATA_DIR}:rw \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   -v ${ETCD_CERT_PATH}:${ETCD_CERT_PATH}:rw \

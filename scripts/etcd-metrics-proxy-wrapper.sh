@@ -32,9 +32,9 @@ fi
 
 DOCKER_RUN_ARGS="${DOCKER_RUN_ARGS} ${DOCKER_OPTS}"
 
-NERDCTL="${NERDCTL:-/opt/bin/nerdctl}"
+DOCKER="${DOCKER:-/usr/bin/docker}"
 set -x
-exec ${NERDCTL} run \
+exec ${DOCKER} run \
   -v ${ETCD_CERT_PATH}:${ETCD_CERT_PATH}:ro \
   --env-file=/etc/etcd/config.env \
   --net=host \
