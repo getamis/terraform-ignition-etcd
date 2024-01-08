@@ -12,15 +12,6 @@ variable "containers" {
   default = {}
 }
 
-variable "binaries" {
-  description = "Desired addon binaries url and checksum."
-  type = map(object({
-    source   = string
-    checksum = string
-  }))
-  default = {}
-}
-
 variable "cloud_provider" {
   description = "The name of public cloud."
   type        = string
